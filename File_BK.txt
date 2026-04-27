@@ -1,0 +1,35 @@
+
+
+
+"""def load_file(key):
+    file_path = filedialog.askopenfilename(parent=root, filetypes=[("CSV Files", "*.csv")])
+    if file_path:
+        files[key] = file_path
+        print(f"{key.capitalize()} file loaded: {file_path}")
+    else:
+        print(f"No file selected for {key}")
+
+print("Select Latitude File")
+load_file("latitude")
+print("Select Longitude File")
+load_file("longitude")
+print("Select Vibration 1 File")
+load_file("vibration1")
+print("Select Vibration 2 File")
+load_file("vibration2")
+print("Select Speed File")
+load_file("speed")
+print("Select Satelite File")
+load_file("Stelite_no")"""
+
+
+
+# Load each CSV into a DataFrame and add a 'timestamp' using the row index.
+dataframes = {}
+for key, file_path in files.items():
+    if file_path:
+        df = pd.read_csv(file_path, header=None, names=[key])
+        df['timestamp'] = df.index
+        dataframes[key] = df
+    else:
+        print(f"{key.capitalize()} file not selected.")
